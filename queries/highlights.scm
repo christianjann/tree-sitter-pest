@@ -46,12 +46,16 @@
 ] @string
 
 [
-  "PUSH"
-  "PEEK"
-  "POP"
-  "SOI"
-  "EOI"
   "ANY"
+  "DROP"
+  "EOI"
+  "NEWLINE"
+  "PEEK"
+  "PEEK_ALL"
+  "POP"
+  "POP_ALL"
+  "PUSH"
+  "SOI"
 ] @keyword
 
 [
