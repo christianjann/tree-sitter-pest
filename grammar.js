@@ -21,7 +21,7 @@ module.exports = grammar({
 
     grammar_rule: ($) =>
       seq(
-        field("name", $.identifier),
+        field("name", choice($.identifier,$.const)),
         "=",
         optional($.modifier),
         "{",
