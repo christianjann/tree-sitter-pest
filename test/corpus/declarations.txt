@@ -169,3 +169,79 @@ exp        = @{ ("E" | "e") ~ ("+" | "-")? ~ ASCII_DIGIT+ }
           (term
             (const)
             (postfix_operator)))))
+
+================================================================================
+Uppercase rule names
+================================================================================
+
+WHITESPACE = _{ " " | "\t" | NEWLINE }
+COMMENT = _{ "#" ~ (!NEWLINE ~ ANY)* }
+
+--------------------------------------------------------------------------------
+
+(pest
+  (grammar_rule
+    (identifier)
+    (modifier)
+    (expression
+      (term
+        (string))
+      (infix_operator)
+      (term
+        (string))
+      (infix_operator)
+      (term
+        (builtin))))
+  (grammar_rule
+    (identifier)
+    (modifier)
+    (expression
+      (term
+        (expression
+          (term
+            (prefix_operator)
+            (builtin)))
+        (postfix_operator)))))
+
+================================================================================
+Non-atomic modifier
+================================================================================
+
+rule = !{ "hello" ~ world }
+
+--------------------------------------------------------------------------------
+
+(pest
+  (grammar_rule
+    (identifier)
+    (modifier)
+    (expression
+      (term
+        (string))
+      (infix_operator)
+      (term
+        (identifier)))))
+
+================================================================================
+Repeat exact and range operators
+================================================================================
+
+rule = { "a"{3} ~ "b"{1,5} ~ "c"{2,} }
+
+--------------------------------------------------------------------------------
+
+(pest
+  (grammar_rule
+    (identifier)
+    (expression
+      (term
+        (string)
+        (postfix_operator))
+      (infix_operator)
+      (term
+        (string)
+        (postfix_operator))
+      (infix_operator)
+      (term
+        (string)
+        (postfix_operator)))))
