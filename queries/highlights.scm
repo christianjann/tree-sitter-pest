@@ -1,6 +1,18 @@
 (line_comment) @comment
 (block_comment) @comment
 
+(grammar_rule name: (identifier) @function)
+(grammar_rule name: (const) @function)
+
+(identifier) @variable
+(builtin) @keyword
+(const) @constant
+
+[
+  (string)
+  (character)
+] @string
+
 [
   "("
   ")"
@@ -10,66 +22,24 @@
   "}"
 ] @punctuation.bracket
 
-
-
-((identifier) @variable)
-((builtin) @type)
-((const) @constant)
-
-[
-  (string)
-  (character)
-] @string
-
-[
-    "~"
-    "|"
-] @function
-
-[
-  "="
-  "+"
-  "*"
-  "&"
-  "_"
-  "^"
-  "@"
-  "$"
-  "!"
-  "?"
-  ".."
-] @operator
-
-[
-  (string)
-  (character)
-] @string
-
-[
-  "ANY"
-  "DROP"
-  "EOI"
-  "NEWLINE"
-  "PEEK"
-  "PEEK_ALL"
-  "POP"
-  "POP_ALL"
-  "PUSH"
-  "SOI"
-] @keyword
-
 [
   "~"
   "|"
+] @operator.sequence
+
+[
   "="
   "+"
   "*"
   "&"
-  "_"
   "^"
   "@"
   "$"
   "!"
   "?"
+  "_"
   ".."
 ] @operator
+
+(node_tag) @tag
+(range) @string.special
