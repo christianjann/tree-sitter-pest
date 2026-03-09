@@ -5,6 +5,11 @@
     "fields": {}
   },
   {
+    "type": "builtin",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "expression",
     "named": true,
     "fields": {},
@@ -239,7 +244,27 @@
     "named": false
   },
   {
+    "type": "ANY",
+    "named": false
+  },
+  {
+    "type": "DROP",
+    "named": false
+  },
+  {
+    "type": "EOI",
+    "named": false
+  },
+  {
+    "type": "NEWLINE",
+    "named": false
+  },
+  {
     "type": "PEEK",
+    "named": false
+  },
+  {
+    "type": "PEEK_ALL",
     "named": false
   },
   {
@@ -247,7 +272,15 @@
     "named": false
   },
   {
+    "type": "POP_ALL",
+    "named": false
+  },
+  {
     "type": "PUSH",
+    "named": false
+  },
+  {
+    "type": "SOI",
     "named": false
   },
   {
@@ -265,10 +298,6 @@
   {
     "type": "_",
     "named": false
-  },
-  {
-    "type": "builtin",
-    "named": true
   },
   {
     "type": "character",
