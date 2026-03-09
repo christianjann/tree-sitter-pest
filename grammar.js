@@ -3,8 +3,8 @@
 /* eslint-disable-next-line spaced-comment */
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
-const IDENTIFIER = /[a-z_][a-z0-9_]*/;
-const CONST = /[A-Z_][A-Z0-9_]+/;
+const IDENTIFIER = /[a-zA-Z_][a-zA-Z0-9_]*/;
+const CONST = token(prec(1, /[A-Z_][A-Z0-9_]+/));
 const NUMBER = /[0-9]+/;
 
 module.exports = grammar({
@@ -108,16 +108,20 @@ module.exports = grammar({
 
     _insensitive_string: ($) => seq("^", $.string),
 
-    _push: ($) => seq("PUSH", "(", $.expression, ")"),
+    _push: ($) => seq(token(prec(2,"PUSH")), "(", $.expression, ")"),
 
     _peek_slice: (_) =>
-      seq("PEEK", "[", optional(NUMBER), "..", optional(NUMBER), "]"),
+      seq(token(prec(2,"PEEK")), "[", optional(NUMBER), "..", optional(NUMBER), "]"),
 
-    _pop: (_) => seq("POP"),
+    _pop: (_) => seq(token(prec(2,"POP"))),
 
     builtin: (_) =>
-      choice("ANY", "DROP", "EOI", "NEWLINE", "PEEK_ALL", "POP_ALL", "SOI"),
-
+      token(
+        prec(
+          2,
+          choice("ANY", "DROP", "EOI", "NEWLINE", "PEEK_ALL", "POP_ALL", "SOI"),
+        ),
+      ),
     const: ($) => CONST,
 
     node_tag: ($) => seq("#", $.identifier),
