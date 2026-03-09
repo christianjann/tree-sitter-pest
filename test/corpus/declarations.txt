@@ -251,3 +251,30 @@ rule = { "a"{3} ~ "b"{1,5} ~ "c"{2,} }
       (term
         (string)
         (postfix_operator)))))
+
+================================================================================
+CamelCase rule names
+================================================================================
+
+myRule = { "hello" }
+MyRule = { "world" }
+camelCaseRule = { "test" }
+
+--------------------------------------------------------------------------------
+
+(pest
+  (grammar_rule
+    (identifier)
+    (expression
+      (term
+        (string))))
+  (grammar_rule
+    (identifier)
+    (expression
+      (term
+        (string))))
+  (grammar_rule
+    (identifier)
+    (expression
+      (term
+        (string)))))
