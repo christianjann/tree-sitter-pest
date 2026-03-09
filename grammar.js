@@ -31,7 +31,7 @@ module.exports = grammar({
 
     identifier: ($) => IDENTIFIER,
 
-    modifier: (_) => choice("_", "@", "$"),
+    modifier: (_) => choice("_", "@", "$", "!"),
 
     expression: ($) =>
       seq(optional("|"), $.term, repeat(seq($.infix_operator, $.term))),
