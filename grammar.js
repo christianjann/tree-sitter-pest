@@ -4,7 +4,7 @@
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 const IDENTIFIER = /[a-zA-Z_][a-zA-Z0-9_]*/;
-const CONST = token(prec(1, /[A-Z_][A-Z0-9_]+/));
+const CONST = token(prec(1, /[A-Z_][A-Z0-9_]*/));
 const NUMBER = /[0-9]+/;
 
 module.exports = grammar({
