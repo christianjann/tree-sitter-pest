@@ -21,7 +21,7 @@ module.exports = grammar({
 
     grammar_rule: ($) =>
       seq(
-        field("name", choice($.identifier,$.const)),
+        field("name", choice($.identifier, $.const)),
         "=",
         optional($.modifier),
         "{",
@@ -140,8 +140,14 @@ module.exports = grammar({
         "*",
         // repeat_once_operator
         "+",
-        // repeat_exact, repeat_min, repeat_max, repeat_min_max
-        seq("[", optional(","), NUMBER, optional(","), "]"),
+        // repeat_exact
+        seq("{", NUMBER, "}"),
+        // repeat_min
+        seq("{", NUMBER, ",", "}"),
+        // repeat_max
+        seq("{", ",", NUMBER, "}"),
+        // repeat_min_max
+        seq("{", NUMBER, ",", NUMBER, "}"),
       ),
 
     comment: ($) => choice($.block_comment, $.line_comment),
