@@ -179,29 +179,35 @@ COMMENT = _{ "#" ~ (!NEWLINE ~ ANY)* }
 
 --------------------------------------------------------------------------------
 
-(pest
-  (grammar_rule
-    (identifier)
-    (modifier)
-    (expression
-      (term
-        (string))
-      (infix_operator)
-      (term
-        (string))
-      (infix_operator)
-      (term
-        (builtin))))
-  (grammar_rule
-    (identifier)
-    (modifier)
-    (expression
-      (term
+    (pest
+      (grammar_rule
+        (const)
+        (modifier)
         (expression
           (term
-            (prefix_operator)
-            (builtin)))
-        (postfix_operator)))))
+            (string))
+          (infix_operator)
+          (term
+            (string))
+          (infix_operator)
+          (term
+            (builtin))))
+      (grammar_rule
+        (const)
+        (modifier)
+        (expression
+          (term
+            (string))
+          (infix_operator)
+          (term
+            (expression
+              (term
+                (prefix_operator)
+                (builtin))
+              (infix_operator)
+              (term
+                (builtin)))
+            (postfix_operator)))))
 
 ================================================================================
 Non-atomic modifier
